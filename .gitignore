@@ -1,3 +1,5 @@
 /npipe/bin
 /npipe/obj
 /*.suo
+/compile-pipeserver.bat
+/npipe.exe
