@@ -21,9 +21,9 @@ namespace npipe
                         {
                             NamedPipeServerStream pipe = new NamedPipeServerStream(args.Last(), PipeDirection.Out, 1);
                             pipe.WaitForConnection();
-                            using (var stdin = Console.OpenStandardInput())
+                            using (var stdin = Console.OpenStandardInput(32))
                             {
-                                stdin.CopyTo(pipe);
+                                stdin.CopyTo(pipe, 32);
                             }
                         }
                         catch (Exception)
@@ -38,9 +38,9 @@ namespace npipe
                         {
                             NamedPipeClientStream pipe = new NamedPipeClientStream(".", args.Last(), PipeDirection.In);
                             pipe.Connect();
-                            using (var stdout = Console.OpenStandardOutput())
+                            using (var stdout = Console.OpenStandardOutput(32))
                             {
-                                pipe.CopyTo(stdout);
+                                pipe.CopyTo(stdout, 32);
                             }
                         }
                         catch (Exception)
